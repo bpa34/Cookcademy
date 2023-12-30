@@ -8,8 +8,14 @@
 import Foundation
 
 struct Recipe: Identifiable {
-  var id = UUID()
+  
+    var isValid: Bool {
+        mainInformation.isValid && !ingredients.isEmpty && !directions.isEmpty
+    }
+
     
+    
+  var id = UUID()
   var mainInformation: MainInformation
   var ingredients: [Ingredient]
   var directions: [Direction]
@@ -40,6 +46,10 @@ struct MainInformation {
         case lunch = "Lunch"
         case dinner = "Dinner"
         case dessert = "Dessert"
+    }
+    
+    var isValid: Bool {
+        !name.isEmpty && !description.isEmpty && !author.isEmpty
     }
 }
 
